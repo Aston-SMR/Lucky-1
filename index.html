@@ -828,7 +828,7 @@ body{color:var(--text)}
       info,
       m: evaluateM(playerCards, bankerCards, allCards),
       r: evaluateR(playerCards, bankerCards, allCards),
-      77: evaluate77(allCards)
+      ds: evaluate77(allCards)
     };
   }
 
@@ -878,7 +878,7 @@ body{color:var(--text)}
   function renderStatsAndHeat(state) {
     const m = calcRate('m');
     const r = calcRate('r');
-    const 77 = calcRate('77');
+    const ds = calcRate('77');
 
     const stats = [
       { cls:'m', name:'M勝率', rate:m.rate },
@@ -944,11 +944,11 @@ body{color:var(--text)}
     historyListEl.innerHTML = items.map(item => {
       const mBoxClass = item.mStatus === '準' ? 'hit' : item.mStatus === '失敗' ? 'miss' : 'draw';
       const rBoxClass = item.rStatus === '準' ? 'hit' : item.rStatus === '失敗' ? 'miss' : 'draw';
-      const 77BoxClass = item.dsStatus === '準' ? 'hit' : item.dsStatus === '失敗' ? 'miss' : 'draw';
+      const dsBoxClass = item.dsStatus === '準' ? 'hit' : item.dsStatus === '失敗' ? 'miss' : 'draw';
 
       const mCls = item.mStatus === '準' ? 'status-hit' : item.mStatus === '失敗' ? 'status-miss' : 'status-draw';
       const rCls = item.rStatus === '準' ? 'status-hit' : item.rStatus === '失敗' ? 'status-miss' : 'status-draw';
-      const 77Cls = item.dsStatus === '準' ? 'status-hit' : item.dsStatus === '失敗' ? 'status-miss' : 'status-draw';
+      const dsCls = item.dsStatus === '準' ? 'status-hit' : item.dsStatus === '失敗' ? 'status-miss' : 'status-draw';
 
       const actualClass = item.actual === '和' ? 'draw' : item.actual === '閒' ? 'hit' : item.actual === '莊' ? 'miss' : 'draw';
       const roundText = '第' + item.sourceRound + '局預測第' + item.targetRound + '局' + (item.isLive ? '（待開）' : '');
@@ -1071,7 +1071,7 @@ body{color:var(--text)}
 
     const m = calcRate('m');
     const r = calcRate('r');
-    const 77 = calcRate('77');
+    const ds = calcRate('77');
     const currentPower = computePower(state, {m,r,77});
 
     pendingPrediction = {
@@ -1081,10 +1081,10 @@ body{color:var(--text)}
       sourceBanker: state.bankerCards.join(' '),
       mPick: String(state.m.pick),
       rPick: String(state.r.pick),
-      S77Pick: String(state.77.pick),
+      dsPick: String(state.77.pick),
       mMeta: state.m.meta,
       rMeta: state.r.meta,
-      s77Meta: state.77.meta,
+      dsMeta: state.77.meta,
       powerText: currentPower.text,
       powerClass: currentPower.cls
     };
