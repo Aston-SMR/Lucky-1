@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#000000">
 <meta name="mobile-web-app-capable" content="yes">
 
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=v8gmyoEUjfaPo9yT8q20nysC8_xXa3IVe6TP5w2SAX7Y3ZL4hoHfOUBO5o9gZWQAdpzIW39mkmrbiUfgn8uaVPC-UYZdblfVztsfBaf6xMlbhO8WW84QL8nt0dW44zHY0RG6APfBoOrfDX7EhSl29GxvGh21MMi6RpO8BW8sDC5Jczt5xT0i31bcDr9IJosPBu3ojLqRn5D9euJd-WWsP1JZzTp441wEiLf7AP1fve3xjUqt9IrGKM4sxyscxuXrvNe70qpPWAjOkjfRAkfFKso5RJdj00u6m7QP9ZhTWiE_n_0p9SEAWgLMVk3w3gBW" charset="UTF-8"></script><style>
+<style>
 :root{
   --bg:#050505;
   --gold:#f5d06f;
@@ -521,10 +521,10 @@ body{color:var(--text)}
     padding:1px;
     line-height:1.05;
   }
-  @media (max-height:700px){
-    .history-list{max-height:190px}
-  }
+}
 
+@media (max-width:700px) and (max-height:700px){
+  .history-list{max-height:190px}
 }
 
 </style>
@@ -636,7 +636,7 @@ M點差:-/公牌:-｜R尾數:-/翻邊:-｜DS大小牌:-｜77大小牌:-
 
 <script>
 (function () {
-  const STORAGE_KEY = 'lucky7_v2';
+  const STORAGE_KEY = 'lucky7_v2_15_fixed';
   const MAX_HISTORY = 15;
 
   let values = ['', '', '', '', '', ''];
