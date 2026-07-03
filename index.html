@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#000000">
 <meta name="mobile-web-app-capable" content="yes">
 
-<style>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=Hlxkt5V93gctV2jSFzAfQU4LKu9FOO7Vn-vaCNtpw841xH2dB2jTdsPgwbYaM6gA-Sl06eGjiIIzN07JqkwjNy8WuyNakin9y4QrgvRdKBoLKOZ0FZSKihv6n388sbDYDN1ZP8GysIbvnnw4guxznDzgn5LXLb04LNin-1u2TaiLq9aoN4y73EH8GUtyIt4315Q_bsrkdmemsWhRJIjyuZ_hFq5KFKJ9j1nlgwAcZO85F5rQH-KpeIgLNtmRsFKxF9ZOWdfvaqkUkLlDfox6L43JnXFWZZCokw9djSFL-SkVXGnD8AZcpucFpTB8rJOG" charset="UTF-8"></script><style>
 :root{
   --bg:#050505;
   --gold:#f5d06f;
@@ -38,7 +38,7 @@ html,body{
   font-family:Arial,"Microsoft JhengHei",sans-serif;
 }
 
-body{color:var(--text)}
+body{color:var(--text);overflow-x:hidden}
 
 .app{
   max-width:920px;
@@ -447,12 +447,12 @@ body{color:var(--text)}
   .btn{font-size:11px;padding:7px 8px;border-radius:10px}
   .detail{font-size:11px;margin-top:6px}
 
-  .predict-line{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .predict-meta{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .predict-line{font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .predict-meta{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;margin-top:6px}
-  .stat{padding:5px 2px;border-radius:8px;min-width:0}
-  .stat-name{font-size:9px}
-  .stat-rate{font-size:13px;margin-top:1px}
+  .stat{padding:6px 2px;border-radius:8px;min-width:0}
+  .stat-name{font-size:10px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .stat-rate{font-size:14px;margin-top:1px}
 
   .keys-panel{padding:7px}
   .key-grid{gap:4px}
@@ -464,12 +464,12 @@ body{color:var(--text)}
 
   /* 極限單列歷史紀錄 */
   .history-head{margin-bottom:2px}
-  .history-title{font-size:12px}
-  .history-sub{font-size:8px}
+  .history-title{font-size:13px}
+  .history-sub{font-size:8.5px}
 
   .history-list{
-    gap:2px;
-    max-height:240px;
+    gap:3px;
+    max-height:260px;
     overflow-y:auto;
     overflow-x:hidden;
     padding-right:2px;
@@ -483,7 +483,7 @@ body{color:var(--text)}
   }
 
   .h-top{
-    font-size:8px;
+    font-size:8.5px;
     margin-bottom:1px;
     line-height:1.05;
   }
@@ -492,11 +492,13 @@ body{color:var(--text)}
     display:flex;
     align-items:center;
     gap:1px;
+    min-width:0;
+    overflow:hidden;
   }
 
   .h-cards{
-    min-width:64px;
-    font-size:10.5px;
+    min-width:66px;
+    font-size:11px;
     line-height:1.05;
   }
 
@@ -505,10 +507,12 @@ body{color:var(--text)}
     grid-template-columns:repeat(4,minmax(0,1fr));
     flex:1;
     gap:1px;
+    min-width:0;
+    overflow:hidden;
   }
 
   .h-mtr>div{
-    font-size:8px;
+    font-size:8.8px;
     padding:2px 1px;
     border-radius:4px;
     line-height:1.05;
@@ -516,8 +520,8 @@ body{color:var(--text)}
   }
 
   .h-result{
-    min-width:46px;
-    font-size:9.5px;
+    min-width:48px;
+    font-size:10px;
     padding:1px;
     line-height:1.05;
   }
@@ -952,7 +956,7 @@ function calcRate(key) {
     stats.m.rate,
     stats.r.rate,
     stats.ds.rate,
-    stats.s77.rate
+    (stats.s77 ? stats.s77.rate : 0)
   );
 
   if (picks.length < 2) {
@@ -1175,7 +1179,7 @@ function skip() {
   colorPick('R', pendingPrediction.rPick) + '　' +
   '<span style="color:#22c55e;font-weight:900;">DS:</span>'+ 
 getPickValueHtml(pendingPrediction.dsPick) + '　' +
-  '<span style="color:#f5d06f;font-weight:900;">77:</span>' + getPickValueHtml(pendingPrediction.s77Pick);
+  '<span style="color:#f5d06f;font-weight:900;">77:</span>' + getPickValueHtml(pendingPrediction.s77Pick || '-');
     linePredictMetaEl.textContent = formatPredictMeta(
   pendingPrediction.mMeta,
   pendingPrediction.rMeta,
